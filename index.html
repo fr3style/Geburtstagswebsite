@@ -133,6 +133,15 @@
     </ul>
   </section>
 
+  <section id="rsvp">
+    <h2>Deine Zusage</h2>
+    <p>Kannst du beim Rock im Garten 2025 dabei sein?</p>
+    <button onclick="setRSVP('yes')">🎸 Ich komme!</button>
+    <button onclick="setRSVP('no')">🤧 Leider nicht</button>
+    <p id="rsvp-result" style="margin-top: 1rem; font-weight: bold;"></p>
+  </section>
+  
+
   <section id="specials">
     <h2>Specials & Highlights</h2>
     <ul>
@@ -166,5 +175,35 @@
       }
     }, 1000);
   </script>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function setRSVP(choice) {
+    localStorage.setItem('rsvpStatus', choice);
+    displayRSVP();
+  }
+
+  function displayRSVP() {
+    const result = document.getElementById('rsvp-result');
+    const status = localStorage.getItem('rsvpStatus');
+    if (status === 'yes') {
+      result.textContent = "Yeah! Wir freuen uns auf dich! 🤘";
+      result.style.color = "#4caf50";
+    } else if (status === 'no') {
+      result.textContent = "Schade, vielleicht nächstes Jahr.";
+      result.style.color = "#f44336";
+    } else {
+      result.textContent = "";
+    }
+  }
+
+  // Beim Laden anzeigen, wenn bereits gespeichert
+  window.addEventListener('DOMContentLoaded', displayRSVP);
+</script>
+
 </body>
 </html>
