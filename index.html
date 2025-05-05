@@ -82,7 +82,7 @@
     <button onclick="showTab('lineup')">Line-Up</button>
     <button onclick="showTab('anfahrt')">Anfahrt</button>
     <button onclick="showTab('food')">Essen & Trinken</button>
-    <button onclick="showTab('rsvp')">Zusage</button>
+    <button onclick="showTab('formular')">Rückmeldung</button>
     <button onclick="showTab('specials')">Specials</button>
   </nav>
 
@@ -134,12 +134,17 @@
     </ul>
   </section>
 
-  <section id="rsvp">
-    <h2>Deine Zusage</h2>
-    <p>Kannst du beim Rock im Garten 2025 dabei sein?</p>
-    <button onclick="setRSVP('yes')">🎸 Ich komme!</button>
-    <button onclick="setRSVP('no')">🤧 Leider nicht</button>
-    <p id="rsvp-result" style="margin-top: 1rem; font-weight: bold;"></p>
+  <section id="formular">
+    <h2>Sag Bescheid, ob du kommst!</h2>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfK-IIencr_4pBnHgNpa2E5DVjwJ2MF7yifL8KwHGhqskBQhw/viewform?embedded=true" width="640" height="1317" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
+            width="100%" 
+            height="600" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0"
+            style="border-radius: 12px; background: #222;">
+      Wird geladen…
+    </iframe>
   </section>
   
 
@@ -176,35 +181,6 @@
       }
     }, 1000);
   </script>
-
-<script>
-  function showTab(id) {
-    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-
-  function setRSVP(choice) {
-    localStorage.setItem('rsvpStatus', choice);
-    displayRSVP();
-  }
-
-  function displayRSVP() {
-    const result = document.getElementById('rsvp-result');
-    const status = localStorage.getItem('rsvpStatus');
-    if (status === 'yes') {
-      result.textContent = "Yeah! Wir freuen uns auf dich! 🤘";
-      result.style.color = "#4caf50";
-    } else if (status === 'no') {
-      result.textContent = "Schade, vielleicht nächstes Jahr.";
-      result.style.color = "#f44336";
-    } else {
-      result.textContent = "";
-    }
-  }
-
-  // Beim Laden anzeigen, wenn bereits gespeichert
-  window.addEventListener('DOMContentLoaded', displayRSVP);
-</script>
 
 </body>
 </html>
